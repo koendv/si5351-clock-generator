@@ -21,6 +21,7 @@ m: set MHz
 +,-: power up/down
 s: store
 r: recall
+t: self-test
 ?,h: help
 ```
 
@@ -37,6 +38,8 @@ Four output levels are available: 2mA, 4mA, 6mA and 8mA. (This is mA current int
 To save frequency and power settings, type 's'. Next time the clock generator is switched on, frequency and power will be restored.
 
 To recall last saved frequency and power settings immediately, type 'r'.
+
+To run a self-test, type 't'. Self-test will do a frequency sweep from 8kHz to 200MHz, and print "ok" or "failed". If the PLL's in the SI5351 lock for every frequency of the sweep, self-test will print "ok". If the PLL's in the SI5351 lose lock during the sweep, self-test will print "failed".
 
 The LED blinks if an error occurs.
 
