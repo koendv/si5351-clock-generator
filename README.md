@@ -9,7 +9,16 @@ This is a clock generator with an output range of 8 kHz to 200 MHz. Output volta
 ##  Description
 The board has two usb-c connectors, one labeled "usb" and one labeled "clock out". Connect the usb-c connector labeled "usb" to a pc to set clock frequency. The clock signals are output on the usb-c connector labeled "clock out", pins D+ and D-.
 
-Connect the usb-c port labeled "usb" to a pc. A usb serial port appears on the pc. Connect a vt100 terminal (putty on Windows, minicom on linux) to the usb serial port. 
+Connect the usb-c port labeled "usb" to a pc. A usb serial port appears on the pc. Connect a vt100 terminal (putty on Windows, minicom on linux) to the usb serial port.
+
+```
+si5351 clock gen
+? for help
+
+0 8MHz 8mA
+1 32768Hz 6mA
+clock 0 >
+```
 
 To obtain a command summary, type '?'
 ```text
@@ -19,6 +28,8 @@ enter: set Hz
 k: set kHz
 m: set MHz
 +,-: power up/down
+a: select clock 0
+b: select clock 1
 s: store
 r: recall
 t: self-test
@@ -34,6 +45,8 @@ To set the frequency, enter a number, optionally followed by k for kHz or m for 
 |12m| 12 MHz|
 
 Four output levels are available: 2mA, 4mA, 6mA and 8mA. (This is mA current into a 50 ohm load). Typing '+' increases power. Typing '-' decreases power.
+
+To change the frequency and power of the second clock, first type 'b'. To go back to changing the frequency and power of the second clock, first type 'a'.
 
 To save frequency and power settings, type 's'. Next time the clock generator is switched on, frequency and power will be restored.
 
@@ -65,29 +78,29 @@ The  [hardware design ](https://oshwlab.com/koendv/si5351-clock) is open source.
 
 ## Software
 
-The CH552E is a 24MHz 8051 with 16 kbyte flash, 1 kbyte ram, and built-in usb. This is enough for many things. A small c program runs the usb serial console and configures the clock generator using I2C. The software generates a single-ended clock on pin D-. Use [ch55xduino](https://github.com/DeqingSun/ch55xduino) to compile.
+The CH552E is a 24MHz 8051 with 16 kbyte flash, 1 kbyte ram, and built-in usb. This is enough for many things. A small c program runs the usb serial console and configures the clock generator using I2C. Use [ch55xduino](https://github.com/DeqingSun/ch55xduino) to compile.
 
 Crystal frequency and crystal capacitance are hardcoded in the source code. If the crystal is changed, the source code has to be changed, too.
 
-At the moment, the software configures a clock for frequencies between 8 kHz and 200MHz. This is sufficient for my needs.
+The software configures two clocks with frequencies between 8 kHz and 200MHz.
 
 Program source and compiled firmware are on [github](https://github.com/koendv/si5351-clock)
 
 ## Compiled binary
 
 Firmware can be uploaded using  [the command line](https://hackaday.io/page/137447-flashing-the-ch552-dev-board-from-the-command-line):
- 
+
 - Disconnect the clock generator from usb
 - Press button "Download"
 - With button "Download" pressed, connect the clock generator to usb
 - Wait one second
-- Release button "Download" 
+- Release button "Download"
 - Run ```vnproch55x -r 16 -t CH552 si5351-clock.ino.hex```
 
 vnproch55x [binaries](https://github.com/DeqingSun/ch55xduino/tree/ch55xduino/ch55xduino/tools) and [source](https://github.com/DeqingSun/vnproch551)
 
 ## Conclusion
 
-A clock generator is presented with good accuracy and temperature stability, a wide frequency range, and low cost. The clock generator is a small, self-contained device, that needs no external software to use. 
+A clock generator is presented with good accuracy and temperature stability, a wide frequency range, and low cost. The clock generator is a small, self-contained device, that needs no external software to use.
 
 *not truncated*
