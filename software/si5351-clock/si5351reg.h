@@ -22,18 +22,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SI5351_H_
-#define SI5351_H_
+#ifndef SI5351REG_H_
+#define SI5351REG_H_
 
 #include <stdint.h>
 
 /* Define definitions */
 
 #define SI5351_BUS_BASE_ADDR            0x60
-#define SI5351_XTAL_FREQ                25000000
-#define SI5351_PLL_FIXED                80000000000ULL
-#define SI5351_FREQ_MULT                100ULL
-#define SI5351_DEFAULT_CLK              1000000000ULL
 
 #define SI5351_PLL_VCO_MIN              600000000
 #define SI5351_PLL_VCO_MAX              900000000
@@ -182,4 +178,4 @@
 #define SI5351_XTAL_ENABLE              (1<<6)
 #define SI5351_MULTISYNTH_ENABLE        (1<<4)
 
-#endif /* SI5351_H_ */
+#endif /* SI5351REG_H_ */
