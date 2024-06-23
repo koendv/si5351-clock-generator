@@ -46,7 +46,7 @@ To set the frequency, enter a number, optionally followed by k for kHz or m for 
 
 Four output levels are available: 2mA, 4mA, 6mA and 8mA. (This is mA current into a 50 ohm load). Typing '+' increases power. Typing '-' decreases power.
 
-To change the frequency and power of the second clock, first type 'b'. To go back to changing the frequency and power of the second clock, first type 'a'.
+To change the frequency and power of the second clock, first type 'b'. To go back to changing the frequency and power of the first clock, first type 'a'.
 
 To save frequency and power settings, type 's'. Next time the clock generator is switched on, frequency and power will be restored.
 
