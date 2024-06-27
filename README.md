@@ -16,18 +16,20 @@ si5351 clock gen
 ? for help
 
 0 8MHz 8mA
-1 32768Hz 6mA
+1 32768Hz 8mA
 clock 0 >
 ```
 
 To obtain a command summary, type '?'
 ```text
-crystal 26000000 Hz
+compiled Jul 20 2024
+crystal 26MHz
 0..9,backspace: frequency
 enter: set Hz
 k: set kHz
 m: set MHz
-+,-: power up/down
++: more power
+-: less power
 a: select clock 0
 b: select clock 1
 s: store
@@ -66,7 +68,9 @@ Also, depending upon frequency and circuit, consider adding a terminating resist
 
 ## Hardware
 
-The hardware is a MS5351M / SI5351 clock generator and a WCH CH552E controller. The hardware supports generating two single-ended clock outputs, or one differential clock output.
+The hardware is a MS5351M / SI5351 clock generator and a WCH CH552E controller.  The design is balanced: The two ic's have the same pin count; cost more or less the same.
+
+The hardware supports generating two single-ended clock outputs, or one differential clock output.
 
 Frequency source is a 26MHz 0.5ppm  Temperature Compensated Crystal Oscillator (TCXO). If high accuracy is not needed, a 25MHz 10ppm crystal can be used instead.
 
@@ -78,13 +82,22 @@ The  [hardware design ](https://oshwlab.com/koendv/si5351-clock) is open source.
 
 ## Software
 
-The CH552E is a 24MHz 8051 with 16 kbyte flash, 1 kbyte ram, and built-in usb. This is enough for many things. A small c program runs the usb serial console and configures the clock generator using I2C. Use [ch55xduino](https://github.com/DeqingSun/ch55xduino) to compile.
+The CH552E is a 24MHz 8051 with 16 kbyte flash, 1 kbyte ram, and built-in usb. This is enough for many things. A small c program runs the usb serial console and configures the clock generator using I2C.
+
+To compile the software, use the Arduino IDE with [ch55xduino](https://github.com/DeqingSun/ch55xduino). To upload
+
+- Disconnect the clock generator from usb
+- Press button "Download"
+- With button "Download" pressed, connect the clock generator to usb
+- Wait one second
+- Release button "Download"
+- In the Arduino IDE, select "Sketch->Upload"
 
 Crystal frequency and crystal capacitance are hardcoded in the source code. If the crystal is changed, the source code has to be changed, too.
 
 The software configures two clocks with frequencies between 8 kHz and 200MHz.
 
-Program source and compiled firmware are on [github](https://github.com/koendv/si5351-clock)
+Program source and compiled firmware are on [github](https://github.com/koendv/si5351-clock-generator)
 
 ## Compiled binary
 

@@ -186,14 +186,15 @@ void loop() {
 
 void PrintHelp() {
   USBSerial_print("\r\ncompiled " __DATE__ "\r\ncrystal ");
-  USBSerial_print(FREQUENCY_CRYSTAL);
+  PrintFrequency(FREQUENCY_CRYSTAL);
   USBSerial_print(
-    " Hz\r\n"
+    "\r\n"
     "0..9,backspace: frequency\r\n"
     "enter: set Hz\r\n"
     "k: set kHz\r\n"
     "m: set MHz\r\n"
-    "+,-: power up/down\r\n"
+    "+: more power\r\n"
+    "-: less power\r\n"
     "a: select clock 0\r\n"
     "b: select clock 1\r\n"
     "s: store\r\n"

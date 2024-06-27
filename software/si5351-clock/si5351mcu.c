@@ -388,19 +388,20 @@ bool si5351mcu_not_ready() {  // return true if si5351 pll's have lost lock
   int16_t status = i2cRead(SI5351_DEVICE_STATUS);
 #if 0
   if (status == -1) {
-    USBSerial_println("I2C"); // i2c error
-  }
-  if (status & SI5351_STATUS_SYS_INIT) {
-    USBSerial_println("INIT"); // still initializing
-  }
-  if ((status & SI5351_STATUS_LOL_A) && clkOn[0]) {
-    USBSerial_println("PLLA"); // loss of lock pll a
-  }
-  if ((status & SI5351_STATUS_LOL_B) && (clkOn[1] || clkOn[2])) {
-    USBSerial_println("PLLB"); // loss of lock pll a
-  }
-  if (status & SI5351_STATUS_LOS_XTAL) {
-    USBSerial_println("XTAL"); // crystal does not oscillate
+    USBSerial_println("I2C");  // i2c error
+  } else {
+    if (status & SI5351_STATUS_SYS_INIT) {
+      USBSerial_println("INIT");  // still initializing
+    }
+    if ((status & SI5351_STATUS_LOL_A) && clkOn[0]) {
+      USBSerial_println("PLLA");  // loss of lock pll a
+    }
+    if ((status & SI5351_STATUS_LOL_B) && (clkOn[1] || clkOn[2])) {
+      USBSerial_println("PLLB");  // loss of lock pll b
+    }
+    if (status & SI5351_STATUS_LOS_XTAL) {
+      USBSerial_println("XTAL");  // crystal does not oscillate
+    }
   }
 #endif
   not_ready = (status == -1)                                                 // no i2c response
