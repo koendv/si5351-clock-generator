@@ -183,6 +183,7 @@ void si5351mcu_setFreq(uint8_t clk, uint32_t freq) {
     *
     ****************************************************************************/
   a = fvco / int_xtal;
+  // XXX instead of dividing by 32 would be more accurate to use continued fraction: best rational approximation of b/c, limited to 20bits.
   b = (fvco % int_xtal) >> 5;  // Integer part of the fraction
                                // scaled to match "c" limits
   c = int_xtal >> 5;           // "c" scaled to match it's limits
