@@ -340,7 +340,7 @@ void si5351mcu_enable(uint8_t clk) {
   uint8_t m = SICLK0_R;
 
   if (clk > 0) {
-    m = SICLK12_R;
+    m = SICLK12_R | SICLK_INVERT;
   }
 
   // write the register value

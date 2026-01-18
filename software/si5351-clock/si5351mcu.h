@@ -71,6 +71,9 @@
 #define SIOUT_6mA 2
 #define SIOUT_8mA 3
 
+// register's clock invert modifier
+#define SICLK_INVERT 0x10
+
 // registers base (2mA by default)
 #define SICLK0_R 76    // 0b01001100
 #define SICLK12_R 108  // 0b01101100
@@ -117,7 +120,7 @@ void si5351mcu_default_init(void);
 void si5351mcu_init(uint8_t, uint32_t);
 
 // reset all PLLs
-static void si5351mcu_reset(void);
+void si5351mcu_reset(void);
 
 // set CLKx(0..2) to freq (Hz)
 void si5351mcu_setFreq(uint8_t, uint32_t);

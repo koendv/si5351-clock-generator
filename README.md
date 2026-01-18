@@ -54,6 +54,8 @@ To save frequency and power settings, type 's'. Next time the clock generator is
 
 To recall last saved frequency and power settings immediately, type 'r'.
 
+If both clocks are configured with the same frequency and power, output is differential.
+
 To run a self-test, type 't'. Self-test will do a frequency sweep from 8kHz to 200MHz. If the PLL's in the SI5351 lose lock during the sweep, self-test will print "fail".
 
 The LED blinks if an error occurs.
