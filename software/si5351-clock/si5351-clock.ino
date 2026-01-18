@@ -72,7 +72,8 @@ void setup() {
   scl_pin = 17;  // SCL on pin P1.7
   si5351mcu_init(CRYSTAL_LOAD_CAP, FREQUENCY_CRYSTAL);
   SetFrequencyAndPower();
-  delay(100);
+  delay(1000);
+  si5351mcu_reset();
   BlinkLed();
 }
 
