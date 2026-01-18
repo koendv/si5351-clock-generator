@@ -62,6 +62,11 @@ void SetFrequencyAndPower() {
   si5351mcu_setPower(0, settings.power[0]);     // Switch clock 0 on
   si5351mcu_setFreq(1, settings.frequency[1]);  // Set clock 1 frequency
   si5351mcu_setPower(1, settings.power[1]);     // Switch clock 1 on
+  if ((settings.frequency[0] == settings.frequency[1]) && (settings.power[0] == settings.power[1])) {
+    /* differential output requested - works because CLK1 has INVERT bit set */
+    delay(1000); /* wait until settled */
+    si5351mcu_reset(); /* synchronize CLK0 and CLK1 */
+  }
 }
 
 void setup() {
